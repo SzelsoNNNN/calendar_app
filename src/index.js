@@ -5,6 +5,6 @@ import App from './App'
 import Static from './static/static'
 
 ReactDOM.render(
-  <Static />,
+  <App />,
   document.getElementById('root')
 )
