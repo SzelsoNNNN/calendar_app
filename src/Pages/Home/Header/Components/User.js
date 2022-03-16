@@ -1,5 +1,5 @@
 import React from 'react'
-import {Avatar, Stack, Typography} from '@mui/material'
+import {Avatar, Stack, Typography, Tooltip, IconButton} from '@mui/material'
 import { blue } from '@mui/material/colors'
 
 const User = () => {
@@ -9,8 +9,12 @@ const User = () => {
     return(
         <div className="header_user">
             <Stack direction="row" alignItems="center" spacing={2}>
-                <Avatar sx={{ bgcolor: blue[500] }}>{userAvatar}</Avatar>
-                <Typography variant="h6">{userName}</Typography>
+                    <Tooltip title="Zmień konto">
+                        <IconButton>
+                            <Avatar sx={{ bgcolor: blue[500] }}>{userAvatar}</Avatar>
+                        </IconButton>
+                    </Tooltip>
+                    <Typography variant="h6">{userName}</Typography>
             </Stack>
         </div>
     )

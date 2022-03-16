@@ -11,7 +11,7 @@ const Header = () => {
             <Stack direction="row"
             justifyContent="space-around"
             alignItems="center"
-            spacing={1} maxWidth>
+            maxWidth>
                 <Watch />
                 <Quotes />
                 <User />
