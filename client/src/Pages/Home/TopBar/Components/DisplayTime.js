@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import {IconButton, Tooltip, Typography, Stack} from '@mui/material'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import TodayIcon from '@mui/icons-material/Today';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import FiltersDisplayTime from './FiltersDisplayTime'
 import Filter from './../../filters'
@@ -82,11 +83,11 @@ const DisplayTime = () => {
         const currentMonthlyTime = filters.display_time.monthly
         const currentYearlyTime = filters.display_time.yearly
         if(currentDisplayMode === 1) {
-            if(currentWeeklyTime >= 52) {
+            if(currentWeeklyTime >= 4) {
                 setFilters({
                     display_mode: currentDisplayMode,
                     display_time: {
-                        weekly: 52,
+                        weekly: 4,
                         monthly: currentMonthlyTime,
                         yearly: currentYearlyTime
                     }
@@ -144,12 +145,28 @@ const DisplayTime = () => {
         }
     }
 
+    const setToday = () => {
+        setFilters({
+            display_mode: 1,
+            display_time: {
+            weekly: 1,
+            monthly: new Date().getMonth() + 1,
+            yearly: new Date().getFullYear()
+            }
+        })
+    }
+
     return(
         <div className="display_time">
             <Stack direction="row"
             justifyContent="space-around"
             alignItems="center"
             spacing={4} maxWidth>
+                <Tooltip title="Ustaw dzisiejszą datę">
+                    <IconButton onClick={() => setToday()}>
+                        <TodayIcon/>
+                    </IconButton>
+                </Tooltip>
                 <Tooltip title="Poprzedni">
                     <IconButton onClick={() => setDisplayTimeSmaller()}>
                         <ArrowLeftIcon/>

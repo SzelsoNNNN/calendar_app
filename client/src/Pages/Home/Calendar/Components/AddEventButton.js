@@ -1,22 +1,28 @@
 import React, { useState } from 'react'
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, Paper } from '@mui/material'
 import { TextField, Stack, Tooltip } from '@mui/material'
-
 import Draggable from 'react-draggable'
+import DB from './../../../../DATABASE/db.json'
 
 const PaperComponent = props => {
-    return (
-      <Draggable
-        handle="#draggable-dialog-title"
-        cancel={'[class*="MuiDialogContent-root"]'}
-      >
-        <Paper {...props} />
-      </Draggable>
-    )
-  }
+  return (
+    <Draggable
+      handle="#draggable-dialog-title"
+      cancel={'[class*="MuiDialogContent-root"]'}
+    >
+      <Paper {...props} />
+    </Draggable>
+  )
+}
 
 const AddEventButton = () => {
     const [open, setOpen] = useState(false)
+    
+    let temps = {
+      title: '',
+      date: '',
+      desc: ''
+    }
 
     const handleClickOpen = () => {
         setOpen(true)
@@ -25,6 +31,11 @@ const AddEventButton = () => {
       const handleClose = () => {
         setOpen(false)
       }
+    
+    const addToDb = (content) => {
+      console.log(content)
+      handleClose()
+    }
 
     return(
         <>
@@ -45,14 +56,14 @@ const AddEventButton = () => {
                 <DialogContent sx={{minWidth: '40vw'}}>
                     <DialogContentText padding={2}>
                         <Stack spacing={2}>
-                            <TextField sx={{width: '77.5%'}} variant="outlined" size="small" label="Tytuł wydarzenia"/>
-                            <TextField sx={{width: '77.5%'}} variant="outlined" size="small" label="Data wydarzenia"/>
-                            <TextField id="outlined-multiline-static" multiline sx={{width: '77.5%'}} variant="outlined" size="small" label="Opis wydarzenia"/>
+                            <TextField sx={{width: '77.5%'}} variant="outlined" size="small" label="Tytuł wydarzenia" onChange={(e) => temps.title = e.target.value}/>
+                            <TextField sx={{width: '77.5%'}} variant="outlined" size="small" label="Data wydarzenia" onChange={(e) => temps.date = e.target.value}/>
+                            <TextField id="outlined-multiline-static" multiline sx={{width: '77.5%'}} variant="outlined" size="small" onChange={(e) => temps.desc = e.target.value} label="Opis wydarzenia"/>
                         </Stack>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button variant="contained" onClick={handleClose}>Dodaj</Button>
+                    <Button variant="contained" onClick={() => addToDb(temps)}>Dodaj</Button>
                 </DialogActions>
             </Dialog>
         </>
