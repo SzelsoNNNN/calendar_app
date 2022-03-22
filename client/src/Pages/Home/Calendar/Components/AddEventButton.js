@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, Paper } from '@mui/material'
 import { TextField, Stack, Tooltip } from '@mui/material'
 import Draggable from 'react-draggable'
-import DB from './../../../../DATABASE/db.json'
+import axios from 'axios'
 
 const PaperComponent = props => {
   return (
@@ -34,6 +34,12 @@ const AddEventButton = () => {
     
     const addToDb = (content) => {
       console.log(content)
+        fetch('http://localhost:3001/api/add_event', {
+          method: 'POST',
+          body: JSON.stringify(temps)
+        }).then(response => {
+          return response.json()
+        })
       handleClose()
     }
 
