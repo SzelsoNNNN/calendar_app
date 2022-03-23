@@ -1,20 +1,11 @@
-[
-    {
-        "event_name": "Coś napewno",
-        "event_date": {
-            "date_day": 21,
-            "date_month": 3,
-            "date_year": 2022
-        },
-        "event_desc": "Jakiś sensowny opis"
+{
+  "2": {
+    "event_name": "312",
+    "event_date": {
+      "day": "12",
+      "month": "das",
+      "year": ""
     },
-    {
-        "event_name": "Inny event",
-        "event_date": {
-            "date_day": 14,
-            "date_month": 5,
-            "date_year": 2022
-        },
-        "event_desc": "Inny opis"
-    }
-]
+    "event_desc": "fsd"
+  }
+}

@@ -20,7 +20,11 @@ const AddEventButton = () => {
     
     let temps = {
       title: '',
-      date: '',
+      date: {
+        day: '',
+        month: '',
+        year: ''
+      },
       desc: ''
     }
 
@@ -32,14 +36,34 @@ const AddEventButton = () => {
         setOpen(false)
       }
     
+    async function postData(url = '', data = {}) {
+      const response = await fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          body: JSON.stringify(data)
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        
+      })
+      return response.json()
+    }
+    
+    /* async function postData(url = '', data = {}) {
+      axios.post(url, data).then((response) => {
+        console.log(response)
+      })
+    } */
+
     const addToDb = (content) => {
       console.log(content)
-        fetch('http://localhost:3001/api/add_event', {
-          method: 'POST',
-          body: JSON.stringify(temps)
-        }).then(response => {
-          return response.json()
-        })
+        //http://localhost:3001/api/add_event
+      postData('http://localhost:3001/api/add_event/', content)
       handleClose()
     }
 
@@ -63,7 +87,11 @@ const AddEventButton = () => {
                     <DialogContentText padding={2}>
                         <Stack spacing={2}>
                             <TextField sx={{width: '77.5%'}} variant="outlined" size="small" label="Tytuł wydarzenia" onChange={(e) => temps.title = e.target.value}/>
-                            <TextField sx={{width: '77.5%'}} variant="outlined" size="small" label="Data wydarzenia" onChange={(e) => temps.date = e.target.value}/>
+                            <Stack sx={{width: '77.5%'}} spacing={2} direction="row">
+                              <TextField maxWidth variant="outlined" size="small" label="Dzień" onChange={(e) => temps.date.day = e.target.value}/>
+                              <TextField maxWidth variant="outlined" size="small" label="Miesiąc" onChange={(e) => temps.date.month = e.target.value}/>
+                              <TextField maxWidth variant="outlined" size="small" label="Rok" onChange={(e) => temps.date.year = e.target.value}/>
+                            </Stack>
                             <TextField id="outlined-multiline-static" multiline sx={{width: '77.5%'}} variant="outlined" size="small" onChange={(e) => temps.desc = e.target.value} label="Opis wydarzenia"/>
                         </Stack>
                     </DialogContentText>
