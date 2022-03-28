@@ -22,9 +22,9 @@ const DeleteEventButton = () => {
         setOpen(true)
       }
     
-      const handleClose = () => {
-        setOpen(false)
-      }
+    const handleClose = () => {
+      setOpen(false)
+    }
 
     return(
         <>

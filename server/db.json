@@ -88,5 +88,14 @@
       "year": "2022"
     },
     "event_desc": "dasdasda"
+  },
+  {
+    "event_name": "Wydarzenie",
+    "event_date": {
+      "day": "2",
+      "month": "3",
+      "year": "2022"
+    },
+    "event_desc": "dasdasdas"
   }
 ]

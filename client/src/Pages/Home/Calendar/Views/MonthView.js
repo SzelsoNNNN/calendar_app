@@ -5,7 +5,7 @@ const MonthView = () => {
     return(
         <div className="month-view">
             <Stack maxWidth className="views_stack" spacing={1} direction="column">
-                coś się wymyśli
+                TBA
             </Stack>
         </div>
     )

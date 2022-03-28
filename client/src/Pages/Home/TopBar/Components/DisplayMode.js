@@ -20,7 +20,7 @@ const DisplayMode = () => {
                 <Tooltip title="Zmień widok">
                     <Button variant={filters.display_mode === 1 ? "contained" : "outlined"}
                             onClick = {() => setDisplayMode(1)}
-                    >Tydzień</Button>
+                    >Wszystkie</Button>
                 </Tooltip>
                 <Tooltip title="Zmień widok">
                     <Button variant={filters.display_mode === 2 ? "contained" : "outlined"}

@@ -25,3 +25,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.eventscontainer {
+  border-radius: 5px;
+  padding: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 1%;
+}
+
+.card {
+  margin-bottom: 1%;
+  
+}

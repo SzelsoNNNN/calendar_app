@@ -11,29 +11,7 @@ app.get('/', (req, res) => {
     res.send('Hello world')
 })
 
-app.post('/api/add_event', (req, res) => {
-    /* {
-        "event_name": "Inny event",
-        "event_date": {
-            "date_day": 14,
-            "date_month": 5,
-            "date_year": 2022
-        },
-        "event_desc": "Inny opis"
-    } */
-    /* const event = JSON.parse(req.headers.body)
-    const db = fs.readFileSync('./db.json')
-    let curr = JSON.parse(db)
-    let eventsNew = curr + event
-    console.log(event)
-    fs.writeFile('./db.json', JSON.stringify(curr), err => {
-        if(err) {
-            console.log(err)
-        } else {
-            console.log('asd')
-        }
-    })*/
-    
+app.post('/api/add_event', (req, res) => {    
     const db = fs.readFileSync('./db.json')
     const data = JSON.parse(db)
     const newKey = Object.keys(data).length + 1
@@ -50,6 +28,8 @@ app.post('/api/add_event', (req, res) => {
         event_desc: event.desc
     }]
 
+
+    
     const newDb = data.concat(newEvent)
     fs.writeFile('./db.json', (JSON.stringify(newDb, null, 2)), err => {
         if(err) { console.log(err) }
