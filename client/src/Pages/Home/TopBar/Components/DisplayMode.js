@@ -23,9 +23,9 @@ const DisplayMode = () => {
                     >Wszystkie</Button>
                 </Tooltip>
                 <Tooltip title="Zmień widok">
-                    <Button variant={filters.display_mode === 2 ? "contained" : "outlined"}
+                    <Button disabled variant={filters.display_mode === 2 ? "contained" : "outlined"}
                             onClick = {() => setDisplayMode(2)}
-                    >Miesiąc</Button>
+                    >Archiwum</Button>
                 </Tooltip>
                 <Tooltip title="Zmień widok">
                     <Button variant={filters.display_mode === 3 ? "contained" : "outlined"}

@@ -5,7 +5,7 @@ import TopBar from './TopBar/TopBar'
 import Calendar from './Calendar/Calendar'
 
 const filterStartPoint = {
-    display_mode: 3,
+    display_mode: 1,
     display_time: {
         weekly: 1,
         monthly: new Date().getMonth() + 1,

@@ -20,7 +20,7 @@ const FiltersDisplayTime = () => {
     if(filters.display_mode === 1) {
         return(
             <>
-                {filters.display_time.weekly} / 4
+                Wszystkie eventy
             </>
         )
     } else if(filters.display_mode === 2) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, Paper } from '@mui/material'
 import { TextField, Stack, Tooltip } from '@mui/material'
 
@@ -42,10 +42,11 @@ const DeleteEventButton = () => {
                 <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
                     Usuwanie wydarzenia
                 </DialogTitle>
-                <DialogContent sx={{minWidth: '40vw'}}>
+                <DialogContent sx={{Width: '40vw'}}>
                     <DialogContentText padding={2}>
                         <Stack spacing={2}>
-                            Tu wydarzenia i button od usuwania
+                            Usuwanie wydarzenia następuje po kliknięciu małej ikonki kosza obok wybranego wydarzenia
+                            <br /> Opcja działa jedynie w widokach :(
                         </Stack>
                     </DialogContentText>
                 </DialogContent>
