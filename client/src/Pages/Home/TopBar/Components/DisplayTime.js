@@ -147,7 +147,7 @@ const DisplayTime = () => {
 
     const setToday = () => {
         setFilters({
-            display_mode: 1,
+            display_mode: 3,
             display_time: {
             weekly: 1,
             monthly: new Date().getMonth() + 1,

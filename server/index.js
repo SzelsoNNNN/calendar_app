@@ -32,31 +32,28 @@ app.post('/api/add_event', (req, res) => {
         } else {
             console.log('asd')
         }
-    })
-    res.send('dodawanie eventu') */
+    })*/
     
     const db = fs.readFileSync('./db.json')
     const data = JSON.parse(db)
     const newKey = Object.keys(data).length + 1
 
     const event = JSON.parse(req.headers.body)
-    const newEvent = {
-        [newKey]: {
-            event_name: event.title,
-            event_date: {
-                day: event.date.day,
-                month: event.date.month,
-                year: event.date.year,
-            },
-            event_desc: event.desc
-        }
-    }
-    const newEvents = JSON.stringify(newEvent, null, 2)
-    fs.writeFile('./db.json', (newEvents), err => {
+
+    const newEvent = [{
+        event_name: event.title,
+        event_date: {
+            day: event.date.day,
+            month: event.date.month,
+            year: event.date.year,
+        },
+        event_desc: event.desc
+    }]
+
+    const newDb = data.concat(newEvent)
+    fs.writeFile('./db.json', (JSON.stringify(newDb, null, 2)), err => {
         if(err) { console.log(err) }
     })
-
-    console.log(newEvent)
 })
 
 app.get('/api/show_events', (req, res) => {

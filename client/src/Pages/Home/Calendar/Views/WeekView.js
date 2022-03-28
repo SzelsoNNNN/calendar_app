@@ -40,26 +40,7 @@ const WeekView = () => {
         <div className="week-view">
             {console.log(eventy)}
             <Stack maxWidth className="views_stack" spacing={1}>
-                {
-                    dni.map(day => {
-                        return(
-                            <Accordion sx={{bgcolor: 'rgba(0, 0, 0, .1)', color: 'black'}} className="accordion_mui">
-                                <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                >
-                                <Typography>{day} {filters.display_time.weekly} / 4 - {months[filters.display_time.monthly - 1]} {filters.display_time.yearly}</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                <Typography>
-                                    Wszystkie eventy na {day}
-                                </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                        )
-                    })
-                }
+                coś się wymyśli
             </Stack>
         </div>
     )

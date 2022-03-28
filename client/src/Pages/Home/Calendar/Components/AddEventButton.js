@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, Paper } from '@mui/material'
 import { TextField, Stack, Tooltip } from '@mui/material'
 import Draggable from 'react-draggable'
-import axios from 'axios'
 
 const PaperComponent = props => {
   return (
@@ -53,18 +52,25 @@ const AddEventButton = () => {
       })
       return response.json()
     }
-    
-    /* async function postData(url = '', data = {}) {
-      axios.post(url, data).then((response) => {
-        console.log(response)
-      })
-    } */
 
     const addToDb = (content) => {
       console.log(content)
         //http://localhost:3001/api/add_event
-      postData('http://localhost:3001/api/add_event/', content)
-      handleClose()
+        if(content.title.length <= 4) { return }
+        if(content.date.day <= 0) { return }
+        if(!(content.date.year % 4 === 0 && content.date.year % 100 !== 0) || content.date.year % 400 === 0) {
+          if(content.date.month === 2 && content.date.day >= 29) { return }
+        }
+        if(content.date.month === 2 && content.date.day >= 30) { return }
+        // month == 4 || month == 6 || month == 9 || month == 11
+        if((content.date.month === 4 || content.date.month === 6 || content.date.month === 9 || content.date.month === 11) && content.date.day > 30) { return }
+        if(content.date.day > 31) { return }
+        if(!content.date.day || !content.date.month || !content.date.year) { return }
+        //if(content.title.length <= 10) { return }
+
+        postData('http://localhost:3001/api/add_event/', content)
+        handleClose()
+        window.location.reload()
     }
 
     return(
@@ -85,14 +91,16 @@ const AddEventButton = () => {
                 </DialogTitle>
                 <DialogContent sx={{minWidth: '40vw'}}>
                     <DialogContentText padding={2}>
-                        <Stack spacing={2}>
-                            <TextField sx={{width: '77.5%'}} variant="outlined" size="small" label="Tytuł wydarzenia" onChange={(e) => temps.title = e.target.value}/>
-                            <Stack sx={{width: '77.5%'}} spacing={2} direction="row">
-                              <TextField maxWidth variant="outlined" size="small" label="Dzień" onChange={(e) => temps.date.day = e.target.value}/>
-                              <TextField maxWidth variant="outlined" size="small" label="Miesiąc" onChange={(e) => temps.date.month = e.target.value}/>
-                              <TextField maxWidth variant="outlined" size="small" label="Rok" onChange={(e) => temps.date.year = e.target.value}/>
+                        <Stack spacing={2} justifyContent="center">
+                            <Stack width={'80%'} spacing={2} justifyContent="center">
+                              <TextField variant="outlined" size="small" label="Tytuł wydarzenia" onChange={(e) => temps.title = e.target.value}/>
+                              <Stack spacing={2} direction="row">
+                                <TextField maxWidth variant="outlined" type="number" size="small" label="Dzień" onChange={(e) => temps.date.day = e.target.value}/>
+                                <TextField maxWidth variant="outlined" type="number" size="small" label="Miesiąc" onChange={(e) => temps.date.month = e.target.value}/>
+                                <TextField maxWidth variant="outlined" type="number" size="small" label="Rok" onChange={(e) => temps.date.year = e.target.value}/>
+                              </Stack>
+                              <TextField id="outlined-multiline-static" multiline variant="outlined" size="small" onChange={(e) => temps.desc = e.target.value} label="Opis wydarzenia"/>
                             </Stack>
-                            <TextField id="outlined-multiline-static" multiline sx={{width: '77.5%'}} variant="outlined" size="small" onChange={(e) => temps.desc = e.target.value} label="Opis wydarzenia"/>
                         </Stack>
                     </DialogContentText>
                 </DialogContent>
